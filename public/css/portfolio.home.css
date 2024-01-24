@@ -1,0 +1,32 @@
+#welcome {
+
+}
+#welcome h1 {
+
+}
+
+#welcome-title {
+    position: absolute;
+    padding-left: 5vw;
+    display: block;
+    transition: all 0.05s ease-out;
+    top: 10rem;
+}
+
+#welcome-title-line-1 {
+    animation-delay: 0.05s;
+    transition: margin-left 0.75s ease-in-out;
+    transition-delay: 0.05s;
+}
+
+#welcome-title-line-2 {
+    animation-delay: 0.45s;
+    transition: margin-left 0.75s ease-in-out;
+    transition-delay: 0.45s;
+}
+
+#welcome-title-line-3 {
+    animation-delay: 0.85s;
+    transition: margin-left 0.75s ease-in-out;
+    transition-delay: 0.85s;
+}

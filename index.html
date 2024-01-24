@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="/public/css/portfolio.css">
+    <link rel="stylesheet" href="/public/css/portfolio.home.css">
+</head>
+<body>
+    <nav>
+        <a>Story-line</a>
+        <a>Productions</a>
+    </nav>
+    <main>
+        <section id="welcome">
+            <div id="holo-sphere">
+                <div id="welcome-title">
+                    <h1 class="lineUp" id="welcome-title-line-1">Welcome on</h1>
+                    <h1 class="lineUp" id="welcome-title-line-2">ZuStudio.</h1>
+                    <h1 class="lineUp" id="welcome-title-line-3">Development</h1>
+                </div>
+
+            </div>
+        </section>
+        <section id="presentation"></section>
+        <section id="projects"></section>
+    </main>
+</body>
+
+<script>
+    /*
+        Welcome Title Margin-Slide
+     */
+    setTimeout(() => {
+        document.querySelector("#welcome-title-line-1").style.marginLeft = "10vw";
+        document.querySelector("#welcome-title-line-2").style.marginLeft = "10vw";
+        document.querySelector("#welcome-title-line-3").style.marginLeft = "10vw";
+    }, 10);
+
+    addEventListener('mousemove', (e) => {
+        const widthCenter = window.innerWidth / 2;
+        const heightCenter = window.innerHeight / 2;
+
+        const dist = Math.min(Math.sqrt(Math.pow((e.clientX - widthCenter), 2) + Math.pow((e.clientY - heightCenter), 2)), Math.sqrt(Math.pow(widthCenter, 2) + Math.pow(heightCenter, 2)))
+        const speed = 0.0035
+        document.querySelector("#welcome-title").style.left = dist * speed * Math.cos(Math.acos((widthCenter-e.clientX)/dist)) + "rem";
+        document.querySelector("#welcome-title").style.top = 10 + dist * speed * 1.5 * Math.sin(Math.asin((heightCenter-e.clientY)/dist)) + "rem";
+    })
+
+
+</script>
+</html>
