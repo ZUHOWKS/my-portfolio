@@ -1,0 +1,28 @@
+{
+  "name": "my-portfolio",
+  "version": "1.0.0",
+  "description": "The ZUHOWKS's portfolio website to store and share all developed code.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZUHOWKS/my-portfolio.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "ZUHOWKS",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ZUHOWKS/my-portfolio/issues"
+  },
+  "homepage": "https://github.com/ZUHOWKS/my-portfolio#readme",
+  "dependencies": {
+    "three": "^0.160.1"
+  },
+  "devDependencies": {
+    "vite": "^5.0.12"
+  }
+}
