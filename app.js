@@ -69,10 +69,6 @@ function initSphere() {
 
     const sphere = new THREE.SphereGeometry( 0.25, 12, 10);
 
-    const widthCenter = window.innerWidth / 2;
-    const heightCenter = window.innerHeight / 2;
-    const dist = Math.sqrt(Math.pow(widthCenter, 2) + Math.pow(heightCenter, 2));
-
     const rayon = 24;
     const minHaloPerCircle = 6;
     const maxCircle = 10;
