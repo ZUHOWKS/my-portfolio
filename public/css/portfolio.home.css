@@ -5,12 +5,18 @@
 
 }
 
+#holo-sphere {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    color: white;
+}
+
 #welcome-title {
     position: absolute;
-    padding-left: 5vw;
     display: block;
     transition: all 0.05s ease-out;
-    top: 10rem;
+    top: 15.5rem;
 }
 
 #welcome-title-line-1 {
