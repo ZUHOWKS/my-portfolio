@@ -46,6 +46,13 @@ function updateWelcomeTitlePosition() {
 }
 
 addEventListener('scroll', (e) => holoSphereScroll(e))
+welcomeTitle.addEventListener('click', (e) => {
+    scrollTo({
+        top: 1200,
+        left: 0,
+        behavior: "smooth",
+    });
+})
 
 
 function holoSphereScroll(e) {
