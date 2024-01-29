@@ -132,13 +132,14 @@ addEventListener('mousemove', (e) => sphereAnimation(e, camera))
 
 function holoSphereCamera(e) {
     let speed = 0.1
+    const holoSphereBeginScroll = 300
+    const holoSphereEndingScroll = 1200
     if (100 <= window.scrollY && window.scrollY < 300) {
-        speed = 0.001
-        camera.position.z = Math.min(35, (window.scrollY-100)*speed);
-    } else if (300 <= window.scrollY && window.scrollY <= 800) {
+        camera.position.z = Math.min(3, (window.scrollY)*3/300);
+    } else if (holoSphereBeginScroll <= window.scrollY && window.scrollY <= holoSphereEndingScroll) {
         speed = 0.0515
-        camera.position.z = Math.min(35, window.scrollY*speed - 300*(speed - 0.001));
-        camera.rotation.z = Math.min(7, Math.max(0, (window.scrollY-300)*speed*0.05));
+        camera.position.z = Math.min(30, (((window.scrollY-holoSphereBeginScroll)*29/holoSphereEndingScroll) + 3));
+        camera.rotation.z = Math.min(Math.PI, Math.max(0, (window.scrollY - holoSphereBeginScroll)*Math.PI/(holoSphereEndingScroll - holoSphereBeginScroll)));
 
         let colorTime = Math.min(1, Math.max(0, (window.scrollY-300)/200));
 
