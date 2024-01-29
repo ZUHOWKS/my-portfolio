@@ -17,6 +17,7 @@
     display: block;
     transition: all 0.05s ease-out;
     top: 15.5rem;
+    line-height: 0;
 }
 
 #welcome-title-line-1 {
