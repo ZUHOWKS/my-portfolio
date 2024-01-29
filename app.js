@@ -53,14 +53,21 @@ const halos = [];
 initSphere();
 
 function sphereAnimation(e, camera) {
+
+    if (window.scrollY < 300 || 1100 < window.scrollY) {
         const widthCenter = window.innerWidth / 2;
         const heightCenter = window.innerHeight / 2;
-        const speed = 0.000065;
+        let speed = 0.000065;
+        if (1100 < window.scrollY) {
+            speed *= -1;
+        }
 
-        camera.rotation.x = (heightCenter - e.clientY) * speed
+        camera.rotation.x = (heightCenter - e.clientY) * speed;
         camera.rotation.y = (widthCenter - e.clientX) * speed
 
         renderer.render( scene, camera );
+    }
+
 }
 
 function addHaloCircleMethod(sphere, material, position, rayonCircle, rayon, angle=Math.PI/5) {
@@ -133,7 +140,7 @@ addEventListener('mousemove', (e) => sphereAnimation(e, camera))
 function holoSphereCamera(e) {
     let speed = 0.1
     const holoSphereBeginScroll = 300
-    const holoSphereEndingScroll = 1200
+    const holoSphereEndingScroll = 1100
     if (100 <= window.scrollY && window.scrollY < 300) {
         camera.position.z = Math.min(3, (window.scrollY)*3/300);
     } else if (holoSphereBeginScroll <= window.scrollY && window.scrollY <= holoSphereEndingScroll) {
