@@ -55,7 +55,7 @@ function holoSphereScroll(e) {
     let speed = 0.001;
     if (window.scrollY >= scrollBegin) {
         speed = 0.01
-        const scrollHiddenTitle = 420
+        const scrollHiddenTitle = 500
         welcomeTitle.style.opacity = Math.max(0, 1 - (window.scrollY)/scrollHiddenTitle)
     } else {
         updateWelcomeTitlePosition()
