@@ -6,34 +6,52 @@
 }
 
 #holo-sphere {
+    top: 100px;
+    position: fixed;
     display: flex;
     align-items: center;
+    align-content: center;
     justify-items: center;
-    color: white;
+    z-index: 1;
 }
 
 #welcome-title {
     position: absolute;
     display: block;
-    transition: all 0.05s ease-out;
-    top: 15.5rem;
+    transition: opacity 0.05s ease-out;
+    top: 5rem;
     line-height: 0;
+    text-shadow: #dec0ff 1px 0 5px;
 }
 
 #welcome-title-line-1 {
     animation-delay: 0.05s;
+    animation-play-state: paused;
     transition: margin-left 0.75s ease-in-out;
     transition-delay: 0.05s;
+    color: white !important;
 }
 
 #welcome-title-line-2 {
-    animation-delay: 0.45s;
+    animation-delay: 0.95s;
+    animation-play-state: paused;
     transition: margin-left 0.75s ease-in-out;
-    transition-delay: 0.45s;
+    transition-delay: 0.95s;
+    color: white !important;
 }
 
 #welcome-title-line-3 {
-    animation-delay: 0.85s;
+    animation-delay: 1.35s;
+    animation-play-state: paused;
     transition: margin-left 0.75s ease-in-out;
-    transition-delay: 0.85s;
+    transition-delay: 1.35s;
+    color: white !important;
+}
+
+#welcome-title-line-4 {
+    animation-delay: 1.35s;
+    animation-play-state: paused;
+    transition: margin-left 0.75s ease-in-out;
+    transition-delay: 1.35s;
+    color: white !important;
 }
