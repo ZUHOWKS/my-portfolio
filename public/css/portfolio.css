@@ -17,10 +17,42 @@ body {
     overflow-x: hidden;
 }
 
-h1 {
+a {
+    color: rgb(var(--text-color-on-primary));
+    text-decoration: underline;
+}
+
+h1, .h1 {
+    color: rgb(var(--text-color-on-primary));
     font-size: 12rem;
-    line-height: 1rem;
     text-transform: capitalize;
+}
+
+h2, .h2 {
+    color: rgb(var(--text-color-on-primary));
+    font-size: 8rem;
+    text-transform: capitalize;
+}
+
+h3, .h3 {
+    color: rgb(var(--text-color-on-primary));
+    font-size: 5rem;
+    text-transform: capitalize;
+}
+
+p, .p {
+    color: rgb(var(--text-color-on-primary));
+    font-size: 2rem;
+    text-transform: initial;
+}
+
+#in-building {
+    margin: 17% 20%;
+    line-height: 2rem;
+}
+
+.text-center {
+    text-align: center;
 }
 
 
