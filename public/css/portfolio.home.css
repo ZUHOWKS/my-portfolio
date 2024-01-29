@@ -23,6 +23,7 @@
     top: 5rem;
     line-height: 0;
     text-shadow: #dec0ff 1px 0 5px;
+    cursor: pointer;
 }
 
 #welcome-title-line-1 {
