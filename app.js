@@ -53,13 +53,14 @@ const halos = [];
 initSphere();
 
 function sphereAnimation(e, camera) {
+        const widthCenter = window.innerWidth / 2;
+        const heightCenter = window.innerHeight / 2;
+        const speed = 0.000065;
 
-    const widthCenter = window.innerWidth / 2;
-    const heightCenter = window.innerHeight / 2;
-    const speed = 0.000065;
+        camera.rotation.x = (heightCenter - e.clientY) * speed
+        camera.rotation.y = (widthCenter - e.clientX) * speed
 
-    camera.rotation.set((heightCenter - e.clientY) * speed, (widthCenter - e.clientX) * speed, 0);
-    renderer.render( scene, camera );
+        renderer.render( scene, camera );
 }
 
 function addHaloCircleMethod(sphere, material, position, rayonCircle, rayon, angle=Math.PI/5) {
@@ -134,10 +135,10 @@ function holoSphereCamera(e) {
     if (100 <= window.scrollY && window.scrollY < 300) {
         speed = 0.001
         camera.position.z = Math.min(35, (window.scrollY-100)*speed);
-    } else if (300 <= window.scrollY && window.scrollY <= 750) {
-        speed = 0.1
+    } else if (300 <= window.scrollY && window.scrollY <= 800) {
+        speed = 0.0515
         camera.position.z = Math.min(35, window.scrollY*speed - 300*(speed - 0.001));
-        camera.rotation.z = Math.min(10, Math.max(0, (window.scrollY)*speed*0.065));
+        camera.rotation.z = Math.min(7, Math.max(0, (window.scrollY-300)*speed*0.05));
 
         let colorTime = Math.min(1, Math.max(0, (window.scrollY-300)/200));
 
