@@ -2,28 +2,48 @@ import * as THREE from 'three';
 
 import haloVertex from './public/shaders/glow/haloVertexShader.glsl'
 import haloFragment from './public/shaders/glow/haloFragmentShader.glsl'
+import {EffectComposer, RenderPass, UnrealBloomPass} from "three/addons";
+import {MeshBasicMaterial} from "three";
 
 
-
+const params = {
+    threshold: 0,
+    strength: 1,
+    radius: 0.5,
+    exposure: 1
+};
 
 const scene = new THREE.Scene();
-//scene.background = new THREE.Color("rgb(0,0,0)")
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight-100), 0.1, 1000);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight);
 document.querySelector("#holo-sphere").appendChild( renderer.domElement );
 
-const MOTION_BLUR_AMOUNT = 0.725
-
 // Lighting
-const dirLight = new THREE.DirectionalLight('#fffffff', 0.75)
+const dirLight = new THREE.DirectionalLight(0xfffffff, 0.75)
 dirLight.position.set(5,5,5)
 
-const ambientLight = new THREE.AmbientLight('#fffffff', 0.2)
+const ambientLight = new THREE.AmbientLight(0xfffffff, 0.2)
 scene.add(dirLight, ambientLight)
 
+//Bloom
+const renderScene = new RenderPass(scene, camera);
+const composer = new EffectComposer(renderer);
+
+
+const bloomPass = new UnrealBloomPass(
+    new THREE.Vector2(window.innerWidth, window.innerHeight),
+    1.5, 0.4, 0.85
+)
+bloomPass.threshold = params.threshold;
+bloomPass.strength = params.strength;
+bloomPass.radius = params.radius;
+composer.addPass(renderScene);
+composer.addPass(bloomPass)
+
 camera.position.set(0,0, 0)
+
 renderer.render( scene, camera );
 
 
@@ -36,7 +56,7 @@ function sphereAnimation(e, camera) {
 
     const widthCenter = window.innerWidth / 2;
     const heightCenter = window.innerHeight / 2;
-    const speed = 0.0001;
+    const speed = 0.000065;
 
     camera.rotation.set((heightCenter - e.clientY) * speed, (widthCenter - e.clientX) * speed, 0);
     renderer.render( scene, camera );
@@ -60,16 +80,19 @@ function addHaloCircleMethod(sphere, material, position, rayonCircle, rayon, ang
 
 function initSphere() {
 
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load("public/img/textures/halo_holosphere.jpg");
-    const material = new THREE.ShaderMaterial( {
+    const color = new THREE.Color(0xdec0ff);
+    const shaderMaterial = new THREE.ShaderMaterial( {
         fragmentShader: haloFragment,
         vertexShader: haloVertex,
     });
 
+    const material = new THREE.MeshBasicMaterial( {
+        color: color
+    });
+
     const sphere = new THREE.SphereGeometry( 0.25, 12, 10);
 
-    const rayon = 24;
+    const rayon = 15;
     const minHaloPerCircle = 6;
     const maxCircle = 10;
 
@@ -83,6 +106,11 @@ function initSphere() {
         }
 
     }
+    let maxHalo = minHaloPerCircle + 5 * (maxCircle);
+    for (let i=0; i < maxHalo; i++) {
+        let position = (i/maxHalo);
+        addHaloCircleMethod(sphere, material, position, rayon, -1, Math.PI/2);
+    }
 
     addHaloCircleMethod(sphere, material, 0, 0, rayon, -Math.PI/2);
     addHaloCircleMethod(sphere, material, 0, 0, rayon, Math.PI/2);
@@ -91,4 +119,33 @@ function initSphere() {
 }
 
 
+function animate() {
+    composer.render();
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+
 addEventListener('mousemove', (e) => sphereAnimation(e, camera))
+
+function holoSphereCamera(e) {
+    let speed = 0.1
+    if (100 <= window.scrollY && window.scrollY < 300) {
+        speed = 0.001
+        camera.position.z = Math.min(35, (window.scrollY-100)*speed);
+    } else if (300 <= window.scrollY && window.scrollY <= 750) {
+        speed = 0.1
+        camera.position.z = Math.min(35, window.scrollY*speed - 300*(speed - 0.001));
+        camera.rotation.z = Math.min(10, Math.max(0, (window.scrollY)*speed*0.065));
+
+        let colorTime = Math.min(1, Math.max(0, (window.scrollY-300)/200));
+
+        const r = Math.round(37 * colorTime);
+        const g = Math.round(colorTime);
+        const b = Math.round(87 * colorTime);
+        scene.background = new THREE.Color("rgb(" + r + "," + g + "," + b + ")")
+    }
+}
+
+addEventListener('scroll', (e) => holoSphereCamera(e))
