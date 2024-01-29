@@ -48,10 +48,16 @@ function updateWelcomeTitlePosition() {
 addEventListener('scroll', (e) => holoSphereScroll(e))
 welcomeTitle.addEventListener('click', (e) => {
     scrollTo({
+        top: 300,
+        left: 0,
+        behavior: "smooth",
+    })
+    setTimeout(() => scrollTo({
         top: 1200,
         left: 0,
         behavior: "smooth",
-    });
+    }), 150)
+
 })
 
 
@@ -60,12 +66,18 @@ function holoSphereScroll(e) {
     const scrollEnding = 500;
 
     let speed = 0.001;
-    if (window.scrollY >= scrollBegin) {
+    if ( scrollBegin <= window.scrollY <= scrollEnding) {
         speed = 0.01
         const scrollHiddenTitle = 500
         welcomeTitle.style.opacity = Math.max(0, 1 - (window.scrollY)/scrollHiddenTitle)
-    } else {
+    } else if (window.scrollY < scrollBegin) {
         updateWelcomeTitlePosition()
+    }
+
+    if (scrollEnding < window.scrollY) {
+        welcomeTitle.style.visibility = "hidden";
+    } else {
+        welcomeTitle.style.visibility = "visible";
     }
     holoSphere.style.top = (100 - Math.min(100, window.scrollY)) + "px";
     welcomeTitle.style.transform = "perspective(0px) translateZ(" + (-Math.max(0,window.scrollY-300) * speed) + "px";
