@@ -18,7 +18,8 @@
 #welcome-title {
     position: absolute;
     display: block;
-    transition: opacity 0.05s ease-out;
+    transition: opacity 0.025s ease-out;
+    transition-delay: 0s;
     top: 5rem;
     line-height: 0;
     text-shadow: #dec0ff 1px 0 5px;
