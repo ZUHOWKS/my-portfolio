@@ -144,9 +144,10 @@ function holoSphereCamera(e) {
     if (100 <= window.scrollY && window.scrollY < 300) {
         camera.position.z = Math.min(3, (window.scrollY)*3/300);
     } else if (holoSphereBeginScroll <= window.scrollY && window.scrollY <= holoSphereEndingScroll) {
-        speed = 0.0515
-        camera.position.z = Math.min(31, (((window.scrollY-holoSphereBeginScroll)*30.5/holoSphereEndingScroll) + 3));
-        camera.rotation.z = Math.min(Math.PI, Math.max(0, (window.scrollY - holoSphereBeginScroll)*Math.PI/(holoSphereEndingScroll - holoSphereBeginScroll)));
+        speed = Math.log(20)
+        const rotationSpeed = Math.log(100)
+        camera.position.z = Math.min(31, (((Math.log(Math.max(Math.exp(speed), window.scrollY-holoSphereBeginScroll)) - speed)*30.5/(Math.log(holoSphereEndingScroll) - speed)) + 3));
+        camera.rotation.z = Math.min(Math.PI, (Math.log(Math.max(Math.exp(rotationSpeed), (window.scrollY - holoSphereBeginScroll))) - rotationSpeed)*Math.PI/(Math.log(holoSphereEndingScroll - holoSphereBeginScroll) - rotationSpeed));
 
         let colorTime = Math.min(1, Math.max(0, (window.scrollY-300)/200));
 
