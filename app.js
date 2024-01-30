@@ -51,6 +51,7 @@ renderer.render( scene, camera );
 
 const halos = [];
 initSphere();
+holoSphereCamera();
 
 function sphereAnimation(e, camera) {
 
@@ -137,7 +138,7 @@ animate();
 
 addEventListener('mousemove', (e) => sphereAnimation(e, camera))
 
-function holoSphereCamera(e) {
+function holoSphereCamera() {
     let speed = 0.1
     const holoSphereBeginScroll = 300
     const holoSphereEndingScroll = 1100
@@ -158,4 +159,4 @@ function holoSphereCamera(e) {
     }
 }
 
-addEventListener('scroll', (e) => holoSphereCamera(e))
+addEventListener('scroll', (e) => holoSphereCamera())
