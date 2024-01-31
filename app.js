@@ -58,7 +58,7 @@ const halos = [];
 let screenSphereMesh;
 
 initSphere();
-holoSphereCamera();
+holoSphereAnimation();
 
 function sphereAnimation(e, camera) {
 
@@ -150,7 +150,7 @@ animate();
 
 addEventListener('mousemove', (e) => sphereAnimation(e, camera));
 
-function holoSphereCamera() {
+function holoSphereAnimation() {
 
     /* VARIABLE */
     let speed = 0.1;
@@ -229,4 +229,4 @@ function cameraTracking(pos, longPos, alphaPos) {
     camera.rotation.z = Math.min(Math.PI, (Math.log(Math.max(Math.exp(rotationSpeed), pos)) - rotationSpeed)*Math.PI/(Math.log(longPos) - rotationSpeed));
 
 }
-addEventListener('scroll', (e) => holoSphereCamera());
+addEventListener('scroll', (e) => holoSphereAnimation());
