@@ -4,6 +4,8 @@ import haloVertex from './public/shaders/glow/haloVertexShader.glsl'
 import haloFragment from './public/shaders/glow/haloFragmentShader.glsl'
 import {EffectComposer, RenderPass, UnrealBloomPass} from "three/addons";
 import {MeshBasicMaterial} from "three";
+import {color, element} from "three/nodes";
+import functionCallNode from "three/addons/nodes/code/FunctionCallNode";
 
 
 const params = {
@@ -48,8 +50,13 @@ renderer.render( scene, camera );
 
 
 
+/*  */
+const purple = new THREE.Color(0xdec0ff);
+const white = new THREE.Color(0xffffff);
 
 const halos = [];
+let screenSphereMesh;
+
 initSphere();
 holoSphereCamera();
 
@@ -89,14 +96,14 @@ function addHaloCircleMethod(sphere, material, position, rayonCircle, rayon, ang
 
 function initSphere() {
 
-    const color = new THREE.Color(0xdec0ff);
+
     const shaderMaterial = new THREE.ShaderMaterial( {
         fragmentShader: haloFragment,
         vertexShader: haloVertex,
     });
 
     const material = new THREE.MeshBasicMaterial( {
-        color: color
+        color: purple
     });
 
     const sphere = new THREE.SphereGeometry( 0.25, 12, 10);
@@ -110,20 +117,25 @@ function initSphere() {
         let r = (rayon * (maxCircle-j)/maxCircle);
         for (let i=0; i < maxHalo; i++) {
             let position = (i/maxHalo);
-            addHaloCircleMethod(sphere, material, position, r, rayon, -Math.PI*j/(2*maxCircle));
-            addHaloCircleMethod(sphere, material, position, r, rayon, Math.PI*j/(2*maxCircle));
+            addHaloCircleMethod(sphere, material.clone(), position, r, rayon, -Math.PI*j/(2*maxCircle));
+            addHaloCircleMethod(sphere, material.clone(), position, r, rayon, Math.PI*j/(2*maxCircle));
         }
 
     }
     let maxHalo = minHaloPerCircle + 5 * (maxCircle);
     for (let i=0; i < maxHalo; i++) {
         let position = (i/maxHalo);
-        addHaloCircleMethod(sphere, material, position, rayon, -1, Math.PI/2);
+        addHaloCircleMethod(sphere, material.clone(), position, rayon, -1, Math.PI/2);
     }
 
-    addHaloCircleMethod(sphere, material, 0, 0, rayon, -Math.PI/2);
-    addHaloCircleMethod(sphere, material, 0, 0, rayon, Math.PI/2);
+    addHaloCircleMethod(sphere, material.clone(), 0, 0, rayon, -Math.PI/2);
+    addHaloCircleMethod(sphere, material.clone(), 0, 0, rayon, Math.PI/2);
 
+    const screenSphere = new THREE.SphereGeometry(rayon + 1, 32, 32);
+    const screenMaterial = new THREE.MeshBasicMaterial( {
+        color: purple
+    });
+    screenSphereMesh = new THREE.Mesh(screenSphere, screenMaterial);
     renderer.render( scene, camera );
 }
 
@@ -136,27 +148,85 @@ function animate() {
 animate();
 
 
-addEventListener('mousemove', (e) => sphereAnimation(e, camera))
+addEventListener('mousemove', (e) => sphereAnimation(e, camera));
 
 function holoSphereCamera() {
-    let speed = 0.1
-    const holoSphereBeginScroll = 300
-    const holoSphereEndingScroll = 1100
-    if (100 <= window.scrollY && window.scrollY < 300) {
-        camera.position.z = Math.min(3, (window.scrollY)*3/300);
-    } else if (holoSphereBeginScroll <= window.scrollY && window.scrollY <= holoSphereEndingScroll) {
-        speed = Math.log(20)
-        const rotationSpeed = Math.log(100)
-        camera.position.z = Math.min(31, (((Math.log(Math.max(Math.exp(speed), window.scrollY-holoSphereBeginScroll)) - speed)*30.5/(Math.log(holoSphereEndingScroll) - speed)) + 3));
-        camera.rotation.z = Math.min(Math.PI, (Math.log(Math.max(Math.exp(rotationSpeed), (window.scrollY - holoSphereBeginScroll))) - rotationSpeed)*Math.PI/(Math.log(holoSphereEndingScroll - holoSphereBeginScroll) - rotationSpeed));
 
-        let colorTime = Math.min(1, Math.max(0, (window.scrollY-300)/200));
+    /* VARIABLE */
+    let speed = 0.1;
+    let scrollY = window.scrollY || 0;
 
-        const r = Math.round(37 * colorTime);
-        const g = Math.round(colorTime);
-        const b = Math.round(87 * colorTime);
-        scene.background = new THREE.Color("rgb(" + r + "," + g + "," + b + ")")
+    /* FIRST ANIMATION SCROLL KEYS */
+    const preventHoloSphereBeginScroll_1 = 100;
+    const holoSphereBeginScroll_1 = 300
+    const holoSphereEndingScroll_1 = 1100
+
+    /* SECOND ANIMATION SCROLL KEYS */
+    const holoSphereBeginScroll_2 = 1500
+    const holoSphereEndingScroll_2 = 2200;
+
+    /* FIRST ANIMATION */
+    if (preventHoloSphereBeginScroll_1 <= scrollY && scrollY < holoSphereBeginScroll_1) {
+        // impressive camera tracking
+        camera.position.z = Math.min(3, scrollY*3/300);
+
+    } else if (holoSphereBeginScroll_1 <= scrollY && scrollY <= holoSphereEndingScroll_1) {
+        // camera tracking
+        cameraTracking(scrollY-holoSphereBeginScroll_1, holoSphereEndingScroll_1 - holoSphereBeginScroll_1, 3);
+
+        // background purple transition
+        backgroundColorTransition(scrollY-holoSphereBeginScroll_1, 200, new THREE.Color(1,1,1), new THREE.Color(37,1,87));
+
+
+    }
+
+    /* SECOND ANIMATION */
+    if (holoSphereBeginScroll_2 <= scrollY && scrollY <= holoSphereEndingScroll_2) {
+        // camera tracking
+        cameraTracking(holoSphereEndingScroll_2 - scrollY,holoSphereEndingScroll_2 - holoSphereBeginScroll_2, 5)
+
+        // halo white transition
+        halos.forEach((element) => {
+
+            if (Math.random() < 0.0373) {
+                element.material.color = white;
+            }
+
+        })
+
+        // background white transition
+        backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 400, 500, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
+    } else {
+
+        // halo purple transition
+        halos.forEach((element) => {
+
+            if (Math.random() < 0.173) {
+                element.material.color = purple;
+            }
+
+        })
     }
 }
 
-addEventListener('scroll', (e) => holoSphereCamera())
+function backgroundColorTransition(pos, longPos, colorSrc, colorDist) {
+    let colorTime = Math.min(1, Math.max(0, (pos)/longPos));
+
+    let r = Math.round(colorSrc.r + (colorDist.r - colorSrc.r) * colorTime);
+    let g = Math.round(colorSrc.g + (colorDist.g - colorSrc.g) * colorTime);
+    let b = Math.round(colorSrc.b + (colorDist.b - colorSrc.b) * colorTime);
+
+    console.log()
+
+    scene.background = new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
+}
+
+function cameraTracking(pos, longPos, alphaPos) {
+    const speed = Math.log(20)
+    const rotationSpeed = Math.log(100);
+
+    camera.position.z = Math.min(31, (((Math.log(Math.max(Math.exp(speed), pos)) - speed)*30.5/(Math.log(longPos) - speed)) + alphaPos));
+    camera.rotation.z = Math.min(Math.PI, (Math.log(Math.max(Math.exp(rotationSpeed), pos)) - rotationSpeed)*Math.PI/(Math.log(longPos) - rotationSpeed));
+
+}
+addEventListener('scroll', (e) => holoSphereCamera());
