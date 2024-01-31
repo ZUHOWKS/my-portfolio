@@ -6,6 +6,7 @@
 
 let welcomeTitle = document.querySelector("#welcome-title");
 let holoSphere = document.querySelector("#holo-sphere");
+let presentationSection = document.querySelector("#presentation");
 
 setTimeout(() => {
     document.querySelector("#welcome-title-line-1").style.marginLeft = "10vw";
@@ -28,24 +29,26 @@ addEventListener('mousemove', (e) => {
 
 
     if (window.scrollY < 300) {
-        updateWelcomeTitlePosition();
+        updatePerspectiveMousePosition(welcomeTitle, 0, 5, 3);
+    } if (1100 <= window.scrollY && window.scrollY <= 2000) {
+        updatePerspectiveMousePosition(document.querySelector("#presentation-text"), 0, 0, 2);
     }
 
 })
 
-function updateWelcomeTitlePosition() {
+function updatePerspectiveMousePosition(element, alphaLeft, alphaTop, opacityStrength) {
     const widthCenter = window.innerWidth / 2;
     const heightCenter = window.innerHeight / 2;
 
     const dist = Math.min(Math.sqrt(Math.pow((clientX - widthCenter), 2) + Math.pow((clientY - heightCenter), 2)), Math.sqrt(Math.pow(widthCenter, 2) + Math.pow(heightCenter, 2)));
     const speed = 0.003;
 
-    welcomeTitle.style.left = dist * speed * Math.cos(Math.acos((widthCenter - clientX) / dist)) + "rem";
-    welcomeTitle.style.top = 5 + dist * speed * 1.5 * Math.sin(Math.asin((heightCenter - clientY) / dist)) + "rem";
-    welcomeTitle.style.opacity = heightCenter * 2 / (3 * dist);
+    element.style.left = alphaLeft + dist * speed * Math.cos(Math.acos((widthCenter - clientX) / dist)) + "rem";
+    element.style.top = alphaTop + dist * speed * 1.5 * Math.sin(Math.asin((heightCenter - clientY) / dist)) + "rem";
+    element.style.opacity = Math.min(1,heightCenter * 2 / (opacityStrength * dist));
 }
 
-addEventListener('scroll', (e) => holoSphereScroll(e))
+addEventListener('scroll', (e) => holoSphereScroll(e));
 welcomeTitle.addEventListener('click', (e) => {
     scrollTo({
         top: 300,
@@ -62,16 +65,16 @@ welcomeTitle.addEventListener('click', (e) => {
 
 
 function holoSphereScroll(e) {
-    const scrollBegin = 300;
+    const scrollBegin = 350;
     const scrollEnding = 500;
 
     let speed = 0.001;
     if ( scrollBegin <= window.scrollY <= scrollEnding) {
-        speed = 0.01
-        const scrollHiddenTitle = 500
-        welcomeTitle.style.opacity = Math.max(0, 1 - (window.scrollY)/scrollHiddenTitle)
+        speed = 0.01;
+        const scrollHiddenTitle = 410;
+        welcomeTitle.style.opacity = Math.max(0, 1 - (window.scrollY)/scrollHiddenTitle);
     } else if (window.scrollY < scrollBegin) {
-        updateWelcomeTitlePosition()
+        updatePerspectiveMousePosition();
     }
 
     if (scrollEnding < window.scrollY) {
@@ -80,6 +83,18 @@ function holoSphereScroll(e) {
         welcomeTitle.style.visibility = "visible";
     }
     holoSphere.style.top = (100 - Math.min(100, window.scrollY)) + "px";
-    welcomeTitle.style.transform = "perspective(0px) translateZ(" + (-Math.max(0,window.scrollY-300) * speed) + "px";
+    welcomeTitle.style.transform = "perspective(0px) translateZ(" + (-Math.max(0,window.scrollY-scrollBegin) * speed) + "px";
 }
 
+/*
+ * Presentation Section
+ */
+addEventListener('scroll', (e) => enterInMyUniverseDoorsScroll(e))
+function enterInMyUniverseDoorsScroll(e) {
+    if (800 <= window.scrollY && window.scrollY <= 2200) {
+        presentationSection.style.visibility = "visible";
+        presentationSection.style.opacity = Math.min(1, (window.scrollY-800)/300);
+    } else {
+        presentationSection.style.visibility = "hidden";
+    }
+}
