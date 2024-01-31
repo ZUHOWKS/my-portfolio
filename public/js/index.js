@@ -48,12 +48,12 @@ function updatePerspectiveMousePosition(element, alphaLeft, alphaTop, opacityStr
     element.style.opacity = Math.min(1,heightCenter * 2 / (opacityStrength * dist));
 }
 
-addEventListener('scroll', (e) => {
-    outOfHoloSphereScroll(e);
-    enterInMyUniverseDoorsScroll(e);
+addEventListener('scroll', () => {
+    outOfHoloSphereScroll();
+    enterInMyUniverseDoorsScroll();
 });
 
-welcomeTitle.addEventListener('click', (e) => {
+welcomeTitle.addEventListener('click', () => {
     scrollTo({
         top: 300,
         left: 0,
@@ -78,7 +78,7 @@ welcomeTitle.addEventListener('click', (e) => {
 })
 
 
-function outOfHoloSphereScroll(e) {
+function outOfHoloSphereScroll() {
     const scrollBegin = 350;
     const scrollEnding = 500;
 
@@ -103,7 +103,7 @@ function outOfHoloSphereScroll(e) {
 /*
  * Presentation Section
  */
-function enterInMyUniverseDoorsScroll(e) {
+function enterInMyUniverseDoorsScroll() {
     if (800 <= window.scrollY && window.scrollY <= 2100) {
         presentationSection.style.visibility = "visible";
         if (window.scrollY <= 1500) {
@@ -117,7 +117,7 @@ function enterInMyUniverseDoorsScroll(e) {
     }
 }
 
-document.querySelector("#enter-universe").addEventListener('click', (e) => {
+document.querySelector("#enter-universe").addEventListener('click', () => {
     scrollTo({
         top: 1800,
         left: 0,
@@ -132,7 +132,7 @@ document.querySelector("#enter-universe").addEventListener('click', (e) => {
         top: 2300,
         left: 0,
         behavior: "smooth",
-    }), 290)
+    }), 285)
 
     setTimeout(() => scrollTo({
         top: 2600,
