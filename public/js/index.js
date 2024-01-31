@@ -91,7 +91,7 @@ function holoSphereScroll(e) {
  */
 addEventListener('scroll', (e) => enterInMyUniverseDoorsScroll(e))
 function enterInMyUniverseDoorsScroll(e) {
-    if (800 <= window.scrollY && window.scrollY <= 2700) {
+    if (800 <= window.scrollY && window.scrollY <= 2100) {
         presentationSection.style.visibility = "visible";
         if (window.scrollY <= 1500) {
             presentationSection.style.opacity = Math.min(1, (window.scrollY-800)/300);
@@ -103,3 +103,33 @@ function enterInMyUniverseDoorsScroll(e) {
         presentationSection.style.visibility = "hidden";
     }
 }
+
+document.querySelector("#enter-universe").addEventListener('click', (e) => {
+    scrollTo({
+        top: 1500,
+        left: 0,
+        behavior: "smooth",
+    })
+    setTimeout(() => scrollTo({
+        top: 1700,
+        left: 0,
+        behavior: "smooth",
+    }), 200)
+    setTimeout(() => scrollTo({
+        top: 2100,
+        left: 0,
+        behavior: "smooth",
+    }), 350)
+    setTimeout(() => scrollTo({
+        top: 2300,
+        left: 0,
+        behavior: "smooth",
+    }), 450)
+
+    setTimeout(() => scrollTo({
+        top: 2600,
+        left: 0,
+        behavior: "smooth",
+    }), 550)
+
+})
