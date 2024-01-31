@@ -116,30 +116,25 @@ function enterInMyUniverseDoorsScroll(e) {
 
 document.querySelector("#enter-universe").addEventListener('click', (e) => {
     scrollTo({
-        top: 1500,
+        top: 1800,
         left: 0,
         behavior: "smooth",
     })
     setTimeout(() => scrollTo({
-        top: 1700,
-        left: 0,
-        behavior: "smooth",
-    }), 200)
-    setTimeout(() => scrollTo({
         top: 2100,
         left: 0,
         behavior: "smooth",
-    }), 350)
+    }), 175)
     setTimeout(() => scrollTo({
         top: 2300,
         left: 0,
         behavior: "smooth",
-    }), 450)
+    }), 290)
 
     setTimeout(() => scrollTo({
         top: 2600,
         left: 0,
         behavior: "smooth",
-    }), 550)
+    }), 375)
 
 })
