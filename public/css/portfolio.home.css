@@ -2,10 +2,12 @@
 
 }
 #welcome h1 {
-
+    transition: margin-left 0.75s ease-in-out;
+    color: white !important;
+    text-shadow: #dec0ff 1px 0 5px;
 }
 
-#holo-sphere {
+#welcome #holo-sphere {
     top: 100px;
     position: fixed;
     display: flex;
@@ -15,45 +17,80 @@
     z-index: 1;
 }
 
-#welcome-title {
+#welcome #welcome-title {
     position: absolute;
     display: block;
     transition: opacity 0.025s ease-out;
     transition-delay: 0s;
     top: 5rem;
     line-height: 0;
-    text-shadow: #dec0ff 1px 0 5px;
-    cursor: pointer;
 }
 
-#welcome-title-line-1 {
+#welcome #welcome-title-line-1 {
     animation-delay: 0.05s;
     animation-play-state: paused;
-    transition: margin-left 0.75s ease-in-out;
     transition-delay: 0.05s;
-    color: white !important;
 }
 
-#welcome-title-line-2 {
+#welcome #welcome-title-line-2 {
     animation-delay: 0.95s;
     animation-play-state: paused;
-    transition: margin-left 0.75s ease-in-out;
     transition-delay: 0.95s;
+}
+
+#welcome #welcome-title-line-3 {
+    animation-delay: 1.35s;
+    animation-play-state: paused;
+    transition-delay: 1.35s;
+}
+
+#welcome #welcome-title-line-4 {
+    animation-delay: 1.35s;
+    animation-play-state: paused;
+    transition-delay: 1.35s;
+}
+
+#presentation {
+    position: fixed;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    z-index: 2;
+    width: 99.9vw;
+    text-shadow: #503b69 1px 0 10px;
+
+}
+
+#presentation #presentation-text {
+    position: relative;
+    width: 60vw;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 5rem;
+    border-radius: 2.5rem;
+    transform: translateY(2.5rem);
+}
+
+#presentation-text span {
+    display: block;
+    line-height: 0;
+    transform: translateY(2rem);
     color: white !important;
 }
 
-#welcome-title-line-3 {
-    animation-delay: 1.35s;
-    animation-play-state: paused;
-    transition: margin-left 0.75s ease-in-out;
-    transition-delay: 1.35s;
+#presentation-text span h2 {
     color: white !important;
 }
 
-#welcome-title-line-4 {
-    animation-delay: 1.35s;
-    animation-play-state: paused;
-    transition: margin-left 0.75s ease-in-out;
-    transition-delay: 1.35s;
+#presentation-text p {
+    font-weight: 600;
+    text-align: justify;
+    margin-left: 1rem;
     color: white !important;
+}
+
+#enter-universe {
+    font-weight: 800 !important;
 }
