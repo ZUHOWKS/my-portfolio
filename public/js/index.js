@@ -30,7 +30,7 @@ addEventListener('mousemove', (e) => {
 
     if (window.scrollY < 300) {
         updatePerspectiveMousePosition(welcomeTitle, 0, 5, 3);
-    } if (1100 <= window.scrollY && window.scrollY <= 1500) {
+    } if (1100 <= window.scrollY && window.scrollY <= 1600) {
         updatePerspectiveMousePosition(document.querySelector("#presentation-text"), 0, 0, 2);
     }
 
@@ -48,7 +48,11 @@ function updatePerspectiveMousePosition(element, alphaLeft, alphaTop, opacityStr
     element.style.opacity = Math.min(1,heightCenter * 2 / (opacityStrength * dist));
 }
 
-addEventListener('scroll', (e) => holoSphereScroll(e));
+addEventListener('scroll', (e) => {
+    outOfHoloSphereScroll(e);
+    enterInMyUniverseDoorsScroll(e);
+});
+
 welcomeTitle.addEventListener('click', (e) => {
     scrollTo({
         top: 300,
@@ -74,7 +78,7 @@ welcomeTitle.addEventListener('click', (e) => {
 })
 
 
-function holoSphereScroll(e) {
+function outOfHoloSphereScroll(e) {
     const scrollBegin = 350;
     const scrollEnding = 500;
 
@@ -99,7 +103,6 @@ function holoSphereScroll(e) {
 /*
  * Presentation Section
  */
-addEventListener('scroll', (e) => enterInMyUniverseDoorsScroll(e))
 function enterInMyUniverseDoorsScroll(e) {
     if (800 <= window.scrollY && window.scrollY <= 2100) {
         presentationSection.style.visibility = "visible";
