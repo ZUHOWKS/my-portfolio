@@ -56,10 +56,20 @@ welcomeTitle.addEventListener('click', (e) => {
         behavior: "smooth",
     })
     setTimeout(() => scrollTo({
+        top: 500,
+        left: 0,
+        behavior: "smooth",
+    }), 200)
+    setTimeout(() => scrollTo({
+        top: 750,
+        left: 0,
+        behavior: "smooth",
+    }), 350)
+    setTimeout(() => scrollTo({
         top: 1200,
         left: 0,
         behavior: "smooth",
-    }), 150)
+    }), 400)
 
 })
 
