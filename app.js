@@ -62,7 +62,7 @@ holoSphereCamera();
 
 function sphereAnimation(e, camera) {
 
-    if (window.scrollY < 300 || 1100 < window.scrollY) {
+    if (window.scrollY < 300 || (1100 <= window.scrollY && window.scrollY <= 1500)) {
         const widthCenter = window.innerWidth / 2;
         const heightCenter = window.innerHeight / 2;
         let speed = 0.000065;
@@ -162,8 +162,8 @@ function holoSphereCamera() {
     const holoSphereEndingScroll_1 = 1100
 
     /* SECOND ANIMATION SCROLL KEYS */
-    const holoSphereBeginScroll_2 = 1500
-    const holoSphereEndingScroll_2 = 2200;
+    const holoSphereBeginScroll_2 = 1600;
+    const holoSphereEndingScroll_2 = 2400;
 
     /* FIRST ANIMATION */
     if (preventHoloSphereBeginScroll_1 <= scrollY && scrollY < holoSphereBeginScroll_1) {
@@ -181,7 +181,7 @@ function holoSphereCamera() {
     }
 
     /* SECOND ANIMATION */
-    if (holoSphereBeginScroll_2 <= scrollY && scrollY <= holoSphereEndingScroll_2) {
+    if (holoSphereBeginScroll_2 <= scrollY && scrollY <= holoSphereEndingScroll_2 + 200) {
         // camera tracking
         cameraTracking(holoSphereEndingScroll_2 - scrollY,holoSphereEndingScroll_2 - holoSphereBeginScroll_2, 5)
 
@@ -195,13 +195,13 @@ function holoSphereCamera() {
         })
 
         // background white transition
-        backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 400, 500, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
+        backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 475, 585, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
     } else {
 
         // halo purple transition
         halos.forEach((element) => {
 
-            if (Math.random() < 0.173) {
+            if (Math.random() < 0.0473) {
                 element.material.color = purple;
             }
 

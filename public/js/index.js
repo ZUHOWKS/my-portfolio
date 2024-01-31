@@ -30,7 +30,7 @@ addEventListener('mousemove', (e) => {
 
     if (window.scrollY < 300) {
         updatePerspectiveMousePosition(welcomeTitle, 0, 5, 3);
-    } if (1100 <= window.scrollY && window.scrollY <= 2000) {
+    } if (1100 <= window.scrollY && window.scrollY <= 1500) {
         updatePerspectiveMousePosition(document.querySelector("#presentation-text"), 0, 0, 2);
     }
 
@@ -91,9 +91,14 @@ function holoSphereScroll(e) {
  */
 addEventListener('scroll', (e) => enterInMyUniverseDoorsScroll(e))
 function enterInMyUniverseDoorsScroll(e) {
-    if (800 <= window.scrollY && window.scrollY <= 2200) {
+    if (800 <= window.scrollY && window.scrollY <= 2700) {
         presentationSection.style.visibility = "visible";
-        presentationSection.style.opacity = Math.min(1, (window.scrollY-800)/300);
+        if (window.scrollY <= 1500) {
+            presentationSection.style.opacity = Math.min(1, (window.scrollY-800)/300);
+        } else {
+            presentationSection.style.opacity = Math.max(0, (2100 - window.scrollY)/300);
+        }
+
     } else {
         presentationSection.style.visibility = "hidden";
     }
