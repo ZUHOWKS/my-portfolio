@@ -53,6 +53,8 @@ renderer.render( scene, camera );
 /*  */
 const purple = new THREE.Color(0xdec0ff);
 const white = new THREE.Color(0xffffff);
+let cameraRotationX = 0;
+let cameraRotationY = 0;
 
 const halos = [];
 let screenSphereMesh;
@@ -65,13 +67,16 @@ function sphereAnimation(e, camera) {
     if (window.scrollY < 300 || (1100 <= window.scrollY && window.scrollY <= 1500)) {
         const widthCenter = window.innerWidth / 2;
         const heightCenter = window.innerHeight / 2;
-        let speed = 0.000065;
+        let speed = 0.0000583;
+
         if (1100 < window.scrollY) {
             speed *= -1;
         }
+        cameraRotationX = (heightCenter - e.clientY) * speed;
+        cameraRotationY = (widthCenter - e.clientX) * speed;
 
-        camera.rotation.x = (heightCenter - e.clientY) * speed;
-        camera.rotation.y = (widthCenter - e.clientX) * speed
+        camera.rotation.x = cameraRotationX;
+        camera.rotation.y = cameraRotationY;
 
         renderer.render( scene, camera );
     }
@@ -180,10 +185,25 @@ function holoSphereAnimation() {
 
     }
 
+    /* STAY TRANSITION */
+    if (holoSphereEndingScroll_1 < scrollY && scrollY < holoSphereBeginScroll_2) {
+        // camera tracking
+        cameraTracking(scrollY-holoSphereBeginScroll_1, holoSphereEndingScroll_1 - holoSphereBeginScroll_1, 3);
+
+        // background purple transition
+        backgroundColorTransition(scrollY-holoSphereBeginScroll_1, 200, new THREE.Color(1,1,1), new THREE.Color(37,1,87));
+
+
+
+    }
+
     /* SECOND ANIMATION */
     if (holoSphereBeginScroll_2 <= scrollY && scrollY <= holoSphereEndingScroll_2 + 200) {
         // camera tracking
-        cameraTracking(holoSphereEndingScroll_2 - scrollY,holoSphereEndingScroll_2 - holoSphereBeginScroll_2, 5)
+        cameraTracking(holoSphereEndingScroll_2 - scrollY,holoSphereEndingScroll_2 - holoSphereBeginScroll_2, 5);
+
+        // background white transition
+        backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 475, 585, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
 
         // halo white transition
         halos.forEach((element) => {
@@ -193,9 +213,6 @@ function holoSphereAnimation() {
             }
 
         })
-
-        // background white transition
-        backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 475, 585, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
     } else {
 
         // halo purple transition
@@ -207,6 +224,17 @@ function holoSphereAnimation() {
 
         })
     }
+
+    /* STAY TRANSITION */
+    if (holoSphereEndingScroll_2 < scrollY) {
+        // camera tracking
+        cameraTracking(holoSphereEndingScroll_2 - scrollY,holoSphereEndingScroll_2 - holoSphereBeginScroll_2, 5);
+
+        // background white transition
+        backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 475, 585, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
+
+
+    }
 }
 
 function backgroundColorTransition(pos, longPos, colorSrc, colorDist) {
@@ -216,17 +244,15 @@ function backgroundColorTransition(pos, longPos, colorSrc, colorDist) {
     let g = Math.round(colorSrc.g + (colorDist.g - colorSrc.g) * colorTime);
     let b = Math.round(colorSrc.b + (colorDist.b - colorSrc.b) * colorTime);
 
-    console.log()
-
     scene.background = new THREE.Color("rgb(" + r + "," + g + "," + b + ")");
 }
 
 function cameraTracking(pos, longPos, alphaPos) {
     const speed = Math.log(20)
-    const rotationSpeed = Math.log(100);
+    const rotationSpeed = Math.log(25);
 
     camera.position.z = Math.min(31, (((Math.log(Math.max(Math.exp(speed), pos)) - speed)*30.5/(Math.log(longPos) - speed)) + alphaPos));
     camera.rotation.z = Math.min(Math.PI, (Math.log(Math.max(Math.exp(rotationSpeed), pos)) - rotationSpeed)*Math.PI/(Math.log(longPos) - rotationSpeed));
-
 }
+
 addEventListener('scroll', (e) => holoSphereAnimation());
