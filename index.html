@@ -7,44 +7,75 @@
     <link rel="stylesheet" href="/public/css/portfolio.home.css">
 </head>
 <body>
+
     <nav>
         <a>Story-line</a>
         <a>Productions</a>
     </nav>
+
     <main>
         <section id="welcome">
             <div id="holo-sphere">
                 <div id="welcome-title">
-                    <h1 class="lineUp pointer-select" id="welcome-title-line-1">Hi,</h1>
-                    <h1 class="lineUp pointer-select" id="welcome-title-line-2">Welcome to my</h1>
-                    <h1 class="lineUp pointer-select" id="welcome-title-line-3">development</h1>
-                    <h1 class="lineUp pointer-select" id="welcome-title-line-4">studio</h1>
+                    <span>
+                        <h1 class="lineUp pointer-select" id="welcome-title-line-1">Hi!</h1>
+                        <h1 class="lineLeft pointer-select" id="welcome-title-line-2">Welcome to my</h1>
+                        <h1 class="lineUp pointer-select" id="welcome-title-line-3">development</h1>
+                        <h1 class="lineUp pointer-select" id="welcome-title-line-4">studio</h1>
+                    </span>
                 </div>
             </div>
         </section>
-        <section id="presentation">
 
-            <div id="presentation-text">
-                <span>
-                    <h2>I'm</h2>
-                    <h2>VILARDELL Joris</h2>
+        <section id="presentation">
+            <div  id="presentation-text">
+                <span id="presentation-title">
+                    <h2 class="lineLeft">I'm</h2>
+                    <h2 class="lineUp">Joris VILARDELL</h2>
                 </span>
+
                 <p>I'm a student in software engineer & developer. I'm passioned by IT development, I had
                     realised a lot of projects, and I'm sharing you my Universe.
+                    The goal is to bring an artistic touch to all projects I had developed to affect a large public.
                 </p>
-                <p class="text-center pointer-select" id="enter-universe"> - Enter in the simulation - </p>
+
+                <p class="text-center pointer-select" id="enter-universe"> - Enter the simulation - </p>
             </div>
         </section>
-        <section id="projects">
-            <div id="scc">
 
-            </div>
-            <div id="asilux">
+        <section  id="projects">
+            <div class="lineRight" id="projects-container">
+                <div id="scc">
 
-            </div>
-            <div id="asilux">
+                    <div class="row">
+                        <span class="title" id="scc-title">
+                            <h1 class="lineUp">Secure</h1>
+                            <h1 class="lineUp">Chicken coop</h1>
+                        </span>
+                        <div id="scc-video">
+                            <video autoplay loop muted><source src="public/img/vod/scc_portfolio.mp4" type="video/mp4"></video>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <p id="scc-explain">Some people need for their chicken coop an intelligent door able to tell the difference between
+                            a chicken and a predator. This project answer that need. With the collaboration of my friends,
+                            we realised a mechanically opening door with an intelligent on-board system which use an AI.
+                            I was in charge to develop the <a href="https://github.com/ZUHOWKS/secure-chicken-coop">program</a> and configure the Raspberry Pi (a programmable card). To resume,
+                            the chicken coop house has a camera, a movement sensor and electromagnetic magnets to hold
+                            the door. When a presence is detected, a checking session is launched to see if there is a
+                            chicken. If it's the case, the electromagnets are disabled and the door can be opened.
+                        </p>
+                    </div>
+                </div>
+                <div id="asilux">
+
+                </div>
+                <div id="divers">
+
+                </div>
             </div>
+
         </section>
     </main>
 </body>
