@@ -5,20 +5,28 @@
  */
 
 let welcomeTitle = document.querySelector("#welcome-title");
+
 let holoSphere = document.querySelector("#holo-sphere");
 let presentationSection = document.querySelector("#presentation");
+let projectsSection = document.querySelector("#projects");
+
+scrollTo({
+    top: window.scrollY,
+    left: 0,
+    behavior: "smooth",
+})
 
 setTimeout(() => {
-    document.querySelector("#welcome-title-line-1").style.marginLeft = "10vw";
-    document.querySelector("#welcome-title-line-2").style.marginLeft = "10vw";
-    document.querySelector("#welcome-title-line-3").style.marginLeft = "10vw";
-    document.querySelector("#welcome-title-line-4").style.marginLeft = "10vw";
-
     document.querySelector("#welcome-title-line-1").style.animationPlayState = "running";
     document.querySelector("#welcome-title-line-2").style.animationPlayState = "running";
     document.querySelector("#welcome-title-line-3").style.animationPlayState = "running";
     document.querySelector("#welcome-title-line-4").style.animationPlayState = "running";
 }, 300);
+
+setTimeout(() => {
+    document.querySelector("#welcome-title-line-1").classList.remove("lineUp");
+    document.querySelector("#welcome-title-line-1").classList.add("lineUpOut");
+}, 1700);
 
 let clientX = 0;
 let clientY = 0;
@@ -29,12 +37,13 @@ addEventListener('mousemove', (e) => {
 
 
     if (window.scrollY < 300) {
-        updatePerspectiveMousePosition(welcomeTitle, 0, 5, 3);
+        updatePerspectiveMousePosition(welcomeTitle, 0, 12, 2);
     } if (1100 <= window.scrollY && window.scrollY <= 1600) {
         updatePerspectiveMousePosition(document.querySelector("#presentation-text"), 0, 0, 2);
     }
 
 })
+
 
 function updatePerspectiveMousePosition(element, alphaLeft, alphaTop, opacityStrength) {
     const widthCenter = window.innerWidth / 2;
@@ -51,6 +60,7 @@ function updatePerspectiveMousePosition(element, alphaLeft, alphaTop, opacityStr
 addEventListener('scroll', () => {
     outOfHoloSphereScroll();
     enterInMyUniverseDoorsScroll();
+    enterSimulationScroll();
 });
 
 welcomeTitle.addEventListener('click', () => {
@@ -98,18 +108,27 @@ function outOfHoloSphereScroll() {
     }
     holoSphere.style.top = (100 - Math.min(100, window.scrollY)) + "px";
     welcomeTitle.style.transform = "perspective(0px) translateZ(" + (-Math.max(0,window.scrollY-scrollBegin) * speed) + "px";
+
 }
 
 /*
  * Presentation Section
  */
-function enterInMyUniverseDoorsScroll() {
-    if (800 <= window.scrollY && window.scrollY <= 2100) {
+function enterSimulationScroll() {
+    const scrollBegin = 800;
+    const scrollEnding = 2000;
+
+    if (scrollBegin-300 < window.scrollY) {
+        document.querySelectorAll('#presentation-text .lineLeft').forEach((element) => element.style.animationPlayState = "running");
+        document.querySelectorAll('#presentation-text .lineUp').forEach((element) => element.style.animationPlayState = "running");
+    }
+    if (scrollBegin <= window.scrollY && window.scrollY <= scrollEnding) {
         presentationSection.style.visibility = "visible";
-        if (window.scrollY <= 1500) {
+
+        if (window.scrollY <= scrollEnding*0.75) {
             presentationSection.style.opacity = Math.min(1, (window.scrollY-800)/300);
         } else {
-            presentationSection.style.opacity = Math.max(0, (2100 - window.scrollY)/300);
+            presentationSection.style.opacity = Math.max(0, (2000 - window.scrollY)/300);
         }
 
     } else {

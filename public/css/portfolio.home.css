@@ -2,9 +2,8 @@
 
 }
 #welcome h1 {
-    transition: margin-left 0.75s ease-in-out;
     color: white !important;
-    text-shadow: #dec0ff 1px 0 5px;
+    text-shadow: #dec0ff 0px 0 4px;
 }
 
 #welcome #holo-sphere {
@@ -19,35 +18,49 @@
 
 #welcome #welcome-title {
     position: absolute;
-    display: block;
     transition: opacity 0.025s ease-out;
     transition-delay: 0s;
-    top: 5rem;
+    height: 15em;
+    top: 12em;
     line-height: 0;
 }
 
+#welcome-title span{
+    position: relative;
+    display: inline-block;
+}
+
+#welcome-title h1 {
+    margin-left: 0.7em;
+    transition: opacity 0.2s ease-in-out;
+}
+
 #welcome #welcome-title-line-1 {
+    position: absolute;
+    text-align: center;
+    width: 87.5vw;
+    top: 6vw;
     animation-delay: 0.05s;
     animation-play-state: paused;
     transition-delay: 0.05s;
 }
 
 #welcome #welcome-title-line-2 {
-    animation-delay: 0.95s;
+    animation-delay: 2s;
     animation-play-state: paused;
-    transition-delay: 0.95s;
+    transition-delay: 2s;
 }
 
 #welcome #welcome-title-line-3 {
-    animation-delay: 1.35s;
+    animation-delay: 2.45s;
     animation-play-state: paused;
-    transition-delay: 1.35s;
+    transition-delay: 2.45s;
 }
 
 #welcome #welcome-title-line-4 {
-    animation-delay: 1.35s;
+    animation-delay: 2.6s;
     animation-play-state: paused;
-    transition-delay: 1.35s;
+    transition-delay: 2.6s;
 }
 
 #presentation {
@@ -58,14 +71,16 @@
     align-content: center;
     justify-content: center;
     justify-items: center;
-    z-index: 2;
+    z-index: 1;
     width: 99.9vw;
     text-shadow: #503b69 1px 0 10px;
+    scale: 1.2;
 
 }
 
 #presentation #presentation-text {
     position: relative;
+    display: inline-block;
     width: 60vw;
     background: rgba(0, 0, 0, 0.15);
     padding: 5rem;
@@ -74,14 +89,32 @@
 }
 
 #presentation-text span {
+    position: relative;
     display: block;
     line-height: 0;
-    transform: translateY(2rem);
     color: white !important;
+    width: 100%;
+    height: 17.5rem;
+    overflow: hidden;
+    transform: translateY(2.5rem);
 }
 
 #presentation-text span h2 {
+    display: block;
     color: white !important;
+}
+
+#presentation-text span h2:nth-child(1) {
+    animation-play-state: paused;
+    animation-duration: 0.75s;
+    animation-delay: 0s;
+}
+
+
+#presentation-text span h2:nth-child(2) {
+    animation-play-state: paused;
+    animation-duration: 0.8s;
+    animation-delay: 0.35s;
 }
 
 #presentation-text p {

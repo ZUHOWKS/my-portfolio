@@ -47,6 +47,12 @@ p, .p {
     text-transform: initial;
 }
 
+.title {
+    display: block;
+    overflow: hidden;
+    line-height: 0;
+}
+
 #in-building {
     margin: 17% 20%;
     line-height: 2rem;
@@ -92,23 +98,104 @@ nav a:hover  {
 
 .lineUp {
     opacity: 0;
-    animation: 1.5s anim-lineUp ease-out forwards;
+    animation: 1.5s 0.05s anim-lineUp ease-out forwards;
+    -webkit-animation: 1.5s 0.05s anim-lineUp ease-out forwards;
+}
+
+.lineUpOut {
+    opacity: 1;
+    animation: 1.5s 0.05s anim-lineUpOut ease-out forwards;
+    -webkit-animation: 1.5s 0.05s anim-lineUpOut ease-out forwards;
+}
+
+.lineLeft {
+    opacity: 0;
+    animation: 1s 0.05s anim-lineLeft ease-in-out forwards;
+    -webkit-animation: 1s 0.05s anim-lineLeft ease-in-out forwards;
+}
+
+.lineRight {
+    animation: 1s 0.05s anim-lineRight ease-in-out forwards;
+    -webkit-animation: 1s 0.05s anim-lineRight ease-in-out forwards;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 @keyframes anim-lineUp {
     0% {
         opacity: 0;
-        transform: translateY(90%);
+        transform: translateY(20rem);
+        -webkit-transform: translateY(20rem);
+    }
+
+    50% {
+            opacity: 0.95;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+    }
+}
+
+@keyframes anim-lineUpOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0rem);
+        -webkit-transform: translateY(0rem);
+    }
+
+    50% {
+        opacity: 0;
+        transform: translateY(-20rem);
+        -webkit-transform: translateY(-20rem);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20rem);
+        -webkit-transform: translateY(-20rem);
+    }
+}
+
+@keyframes anim-lineLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
     }
     20% {
         opacity: 0;
     }
     75% {
         opacity: 0.95;
-        transform: translateY(0%);
+        transform: translateX(0%);
     }
     100% {
         opacity: 1;
-        transform: translateY(0%);
+        transform: translateX(0%);
+    }
+}
+
+@keyframes anim-lineRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    20% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0.95;
+        transform: translateX(0%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
     }
 }
