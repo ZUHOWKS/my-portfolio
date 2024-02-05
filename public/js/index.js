@@ -174,7 +174,7 @@ function myUniverseScroll() {
             document.querySelectorAll("#scc h1").forEach((e) => e.style.color = "black !important");
 
         } else if (scrollBegin + 200 < window.scrollY && window.scrollY <= scrollBegin + 2000) {
-            let sectionPos = 5 - 71.5 * (window.scrollY - scrollBegin)/(2000);
+            let sectionPos = 10 - 76.5 * (window.scrollY - scrollBegin)/(2000);
             document.querySelector("#scc").style.transform = "translateX(" + sectionPos + "vw)";
 
             let titlePos = 7 - ((window.scrollY - scrollBegin - 200)/2000)*22.5;
