@@ -34,8 +34,6 @@ addEventListener('mousemove', (e) => {
     clientX = e.clientX
     clientY = e.clientY
 
-
-
     if (window.scrollY < 300) {
         updatePerspectiveMousePosition(welcomeTitle, 0, 12, 2);
     } if (1100 <= window.scrollY && window.scrollY <= 1600) {
@@ -59,8 +57,8 @@ function updatePerspectiveMousePosition(element, alphaLeft, alphaTop, opacityStr
 
 addEventListener('scroll', () => {
     outOfHoloSphereScroll();
-    enterInMyUniverseDoorsScroll();
     enterSimulationScroll();
+    myUniverseScroll();
 });
 
 welcomeTitle.addEventListener('click', () => {
@@ -160,3 +158,61 @@ document.querySelector("#enter-universe").addEventListener('click', () => {
     }), 375)
 
 })
+
+let projectsAnimation = false
+function myUniverseScroll() {
+    const scrollBegin = 2325;
+    const scrollEnding = 8000;
+    projectsSection.style.opacity = Math.min(1, (window.scrollY-scrollBegin)/200);
+    projectsSection.style.transform = "translateX(" + Math.max(-5, -5 + 5*(scrollBegin + 200-window.scrollY)/200) + "em)";
+    if (scrollBegin <= window.scrollY && window.scrollY <= scrollEnding) {
+        projectsSection.style.visibility = "visible";
+
+        if(projectsAnimation && window.scrollY <= scrollBegin + 200) {
+
+            projectsSection.style.background = "none";
+            document.querySelectorAll("#scc h1").forEach((e) => e.style.color = "black !important");
+
+        } else if (scrollBegin + 200 < window.scrollY && window.scrollY <= scrollBegin + 2000) {
+            let sectionPos = 5 - 71.5 * (window.scrollY - scrollBegin)/(2000);
+            document.querySelector("#scc").style.transform = "translateX(" + sectionPos + "vw)";
+
+            let titlePos = 7 - ((window.scrollY - scrollBegin - 200)/2000)*22.5;
+            document.querySelector("#scc #scc-title").style.transform = "translateX(" + titlePos + "em)";
+
+
+        } else if (scrollBegin + 2000 < window.scrollY && window.scrollY <= scrollBegin + 4000) {
+            let sectionPos = 400 * (window.scrollY - scrollBegin - 2000)/(4000);
+            document.querySelector("#scc").style.transform = "translateX(-66.5vw) translateY(-" + sectionPos + "vh)";
+            document.querySelector("#scc #scc-title").style.transform = "translateX(-12.5em)";
+        }
+
+
+        if (scrollBegin + 25 <= window.scrollY) {
+            document.querySelector('#projects-container').style.animationPlayState = "running";
+            projectsAnimation = true;
+
+            document.querySelectorAll('#scc .lineLeft').forEach((element) => element.style.animationPlayState = "running");
+            document.querySelectorAll('#scc .lineUp').forEach((element) => element.style.animationPlayState = "running");
+        }
+
+        if (scrollBegin + 150 < window.scrollY && window.scrollY <= scrollBegin + 4000) {
+            let background = "#d5aa81";
+            let white = "#fff";
+            projectsSection.style.background = background;
+            document.querySelector("#scc .title").style.mixBlendMode = "difference";
+            document.querySelectorAll("#scc h1").forEach((e) => e.style.color = white);
+            document.querySelectorAll("#scc p").forEach((e) => e.style.color = white);
+            document.querySelectorAll("#scc a").forEach((e) => e.style.color = white);
+        } else {
+            projectsSection.style.background = "none";
+            document.querySelectorAll("#scc h1").forEach((e) => e.style.color = "black");
+            document.querySelectorAll("#scc p").forEach((e) => e.style.color = "black");
+            document.querySelectorAll("#scc a").forEach((e) => e.style.color = "black");
+            document.querySelector("#scc .title").style.mixBlendMode = "normal";
+        }
+
+    } else {
+        projectsSection.style.visibility = "hidden";
+    }
+}

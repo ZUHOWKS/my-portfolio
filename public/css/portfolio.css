@@ -23,27 +23,31 @@ a {
     text-decoration: underline;
 }
 
+a:hover {
+    scale: 1.05;
+}
+
 h1, .h1 {
     color: rgb(var(--text-color-on-primary));
-    font-size: 12rem;
-    text-transform: capitalize;
+    font-size: 11.5em;
+    text-transform: uppercase;
 }
 
 h2, .h2 {
     color: rgb(var(--text-color-on-primary));
-    font-size: 8rem;
-    text-transform: capitalize;
+    font-size: 7.75em;
+    text-transform: uppercase;
 }
 
 h3, .h3 {
     color: rgb(var(--text-color-on-primary));
-    font-size: 5rem;
-    text-transform: capitalize;
+    font-size: 5em;
+    text-transform: uppercase;
 }
 
 p, .p {
     color: rgb(var(--text-color-on-primary));
-    font-size: 2rem;
+    font-size: 2em;
     text-transform: initial;
 }
 
@@ -65,7 +69,6 @@ p, .p {
 .pointer-select {
     cursor: pointer;
 }
-
 
 nav {
     width: 100vw;
