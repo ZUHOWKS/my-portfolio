@@ -3,9 +3,6 @@ import * as THREE from 'three';
 import haloVertex from './public/shaders/glow/haloVertexShader.glsl'
 import haloFragment from './public/shaders/glow/haloFragmentShader.glsl'
 import {EffectComposer, RenderPass, UnrealBloomPass} from "three/addons";
-import {MeshBasicMaterial} from "three";
-import {color, element} from "three/nodes";
-import functionCallNode from "three/addons/nodes/code/FunctionCallNode";
 
 
 const params = {
@@ -232,7 +229,6 @@ function holoSphereAnimation() {
 
         // background white transition
         backgroundColorTransition(scrollY - holoSphereBeginScroll_2 - 475, 585, new THREE.Color(37,1,87), new THREE.Color(255,255,255));
-
 
     }
 }
