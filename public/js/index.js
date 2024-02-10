@@ -160,33 +160,59 @@ document.querySelector("#enter-universe").addEventListener('click', () => {
 })
 
 let projectsAnimation = false
+let asiluxVideoStarted = false
+let confirmBlocklingArrived = false
+
+function changeProjectTheme(background, textColor) {
+    projectsSection.style.background = background;
+    document.querySelectorAll("#projects h1").forEach((e) => e.style.color = textColor);
+    document.querySelectorAll("#projects p").forEach((e) => e.style.color = textColor);
+    document.querySelectorAll("#projects a").forEach((e) => e.style.color = textColor);
+}
+
 function myUniverseScroll() {
     const scrollBegin = 2325;
-    const scrollEnding = 8000;
+    const scrollEnding = 12000;
     projectsSection.style.opacity = Math.min(1, (window.scrollY-scrollBegin)/200);
     projectsSection.style.transform = "translateX(" + Math.max(-5, -5 + 5*(scrollBegin + 200-window.scrollY)/200) + "em)";
+
     if (scrollBegin <= window.scrollY && window.scrollY <= scrollEnding) {
         projectsSection.style.visibility = "visible";
 
+        /* SCROLL CONTROLLER */
         if(projectsAnimation && window.scrollY <= scrollBegin + 200) {
 
             projectsSection.style.background = "none";
             document.querySelectorAll("#scc h1").forEach((e) => e.style.color = "black !important");
 
         } else if (scrollBegin + 200 < window.scrollY && window.scrollY <= scrollBegin + 2000) {
-            let sectionPos = 10 - 76.5 * (window.scrollY - scrollBegin)/(2000);
+            let sectionPos = -37 - 76.5 * (window.scrollY - scrollBegin)/(2000);
             document.querySelector("#scc").style.transform = "translateX(" + sectionPos + "vw)";
 
-            let titlePos = 7 - ((window.scrollY - scrollBegin - 200)/2000)*22.5;
+            let titlePos = 8 - ((window.scrollY - scrollBegin - 200)/2000)*22.5;
             document.querySelector("#scc #scc-title").style.transform = "translateX(" + titlePos + "em)";
 
 
-        } else if (scrollBegin + 2000 < window.scrollY && window.scrollY <= scrollBegin + 4000) {
-            let sectionPos = 400 * (window.scrollY - scrollBegin - 2000)/(4000);
-            document.querySelector("#scc").style.transform = "translateX(-66.5vw) translateY(-" + sectionPos + "vh)";
+        } else if (scrollBegin + 2000 < window.scrollY && window.scrollY <= scrollBegin + 4200) {
+            let sectionPos = 220 * (window.scrollY - scrollBegin - 2000)/(2200);
+            document.querySelector('#scc-video video').play();
+            document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + sectionPos + "vh)";
             document.querySelector("#scc #scc-title").style.transform = "translateX(-12.5em)";
+            document.querySelector("#asilux").style.transform = "translateY(-" + (sectionPos + 25) + "vh)";
+
+        } else if (scrollBegin + 4200 < window.scrollY && window.scrollY <= scrollBegin + 5700) {
+            let sectionPos = 75 * (window.scrollY - scrollBegin - 4200)/(1500);
+            document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + (sectionPos + 220) + "vh)";
+            document.querySelector("#asilux").style.transform = "translateY(-" + (sectionPos + 175) + "vh)";
+
         }
 
+        /* RUN ANIMATION */
+        if (scrollBegin <= window.scrollY && window.scrollY <= scrollBegin + 3800) {
+            document.querySelector('#scc-video video').play();
+        } else {
+            document.querySelector('#scc-video video').pause();
+        }
 
         if (scrollBegin + 25 <= window.scrollY) {
             document.querySelector('#projects-container').style.animationPlayState = "running";
@@ -196,19 +222,56 @@ function myUniverseScroll() {
             document.querySelectorAll('#scc .lineUp').forEach((element) => element.style.animationPlayState = "running");
         }
 
+        if (scrollBegin + 4900 <= window.scrollY) {
+
+            document.querySelectorAll('#asilux .lineLeft').forEach((element) => element.style.animationPlayState = "running");
+            document.querySelectorAll('#asilux .lineUp').forEach((element) => element.style.animationPlayState = "running");
+
+            document.querySelector("#asilux").style.opacity = 1;
+            if (!asiluxVideoStarted) {
+                asiluxVideoStarted = true;
+                document.querySelector('#asilux-blockling-2').pause();
+                document.querySelector('#asilux-blockling-1').play();
+
+                setTimeout(() => {
+
+                    document.querySelector('#asilux-blockling-2').style.opacity = 1;
+                    document.querySelector('#asilux-blockling-2').play();
+                    document.querySelector('#asilux-blockling-1').pause();
+                    document.querySelector('#asilux-blockling-1').remove();
+
+                    confirmBlocklingArrived = true;
+                }, 3525)
+            } else if (confirmBlocklingArrived) {
+                setTimeout(() => {
+                    document.querySelector('#asilux-blockling-2').play()
+                }, 200);
+            }
+        } else {
+            if (asiluxVideoStarted) {
+                document.querySelector("#asilux").style.opacity = 0;
+                document.querySelector('#asilux-blockling-2').pause();
+            }
+        }
+
+
+        /* PROJECT TRANSITIONS */
         if (scrollBegin + 150 < window.scrollY && window.scrollY <= scrollBegin + 4000) {
             let background = "#d5aa81";
             let white = "#fff";
             projectsSection.style.background = background;
+            changeProjectTheme(background, white);
+
             document.querySelector("#scc .title").style.mixBlendMode = "difference";
-            document.querySelectorAll("#scc h1").forEach((e) => e.style.color = white);
-            document.querySelectorAll("#scc p").forEach((e) => e.style.color = white);
-            document.querySelectorAll("#scc a").forEach((e) => e.style.color = white);
+
+        } else if (scrollBegin + 5100 < window.scrollY && window.scrollY <= scrollBegin + 10000) {
+            let background = "#859b50";
+            let white = "#fdfdfd";
+            changeProjectTheme(background, white);
+
+
         } else {
-            projectsSection.style.background = "none";
-            document.querySelectorAll("#scc h1").forEach((e) => e.style.color = "black");
-            document.querySelectorAll("#scc p").forEach((e) => e.style.color = "black");
-            document.querySelectorAll("#scc a").forEach((e) => e.style.color = "black");
+            changeProjectTheme("none", "black");
             document.querySelector("#scc .title").style.mixBlendMode = "normal";
         }
 
