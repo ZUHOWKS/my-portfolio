@@ -141,6 +141,18 @@
     transition: background 0.2s ease-in-out;
 }
 
+#projects h1 {
+    transition: all 0.5s;
+}
+
+#projects p {
+    transition: all 0.5s;
+}
+
+#projects a {
+    transition: all 0.5s;
+}
+
 #projects #projects-container{
     top: 0;
     left: 0;
@@ -173,7 +185,6 @@
 #scc .title h1 {
     color: black;
     font-size: 14em;
-    transition: all 0.5s;
 }
 
 #scc div:nth-child(1) .title h1:nth-child(1) {
