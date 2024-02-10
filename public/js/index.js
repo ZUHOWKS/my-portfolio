@@ -201,7 +201,7 @@ function myUniverseScroll() {
             document.querySelector("#asilux").style.transform = "translateY(-" + (sectionPos + 25) + "vh)";
 
         } else if (scrollBegin + 4200 < window.scrollY && window.scrollY <= scrollBegin + 5700) {
-            let sectionPos = 75 * (window.scrollY - scrollBegin - 4200)/(1500);
+            let sectionPos = 65 * (window.scrollY - scrollBegin - 4200)/(1500);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + (sectionPos + 220) + "vh)";
             document.querySelector("#asilux").style.transform = "translateY(-" + (sectionPos + 175) + "vh)";
 
@@ -264,7 +264,7 @@ function myUniverseScroll() {
 
             document.querySelector("#scc .title").style.mixBlendMode = "difference";
 
-        } else if (scrollBegin + 5100 < window.scrollY && window.scrollY <= scrollBegin + 10000) {
+        } else if (scrollBegin + 5200 < window.scrollY && window.scrollY <= scrollBegin + 10000) {
             let background = "#859b50";
             let white = "#fdfdfd";
             changeProjectTheme(background, white);
