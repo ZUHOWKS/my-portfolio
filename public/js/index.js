@@ -172,7 +172,7 @@ function changeProjectTheme(background, textColor) {
 
 function myUniverseScroll() {
     const scrollBegin = 2325;
-    const scrollEnding = 12000;
+    const scrollEnding = 19000;
     projectsSection.style.opacity = Math.min(1, (window.scrollY-scrollBegin)/200);
     projectsSection.style.transform = "translateX(" + Math.max(-5, -5 + 5*(scrollBegin + 200-window.scrollY)/200) + "em)";
 
@@ -202,9 +202,17 @@ function myUniverseScroll() {
 
         } else if (scrollBegin + 4200 < window.scrollY && window.scrollY <= scrollBegin + 5700) {
             let sectionPos = 65 * (window.scrollY - scrollBegin - 4200)/(1500);
-            document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + (sectionPos + 220) + "vh)";
-            document.querySelector("#asilux").style.transform = "translateY(-" + (sectionPos + 175) + "vh)";
+            document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + (sectionPos * 2 + 220) + "vh)";
+            document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 175) + "vh)";
 
+        } else if (scrollBegin + 5700 < window.scrollY && window.scrollY <= scrollBegin + 6600) {
+            let sectionPos = 40 * (window.scrollY - scrollBegin - 5700)/(900);
+            document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
+            document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 240) + "vh)";
+        } else if (scrollBegin + 6600 < window.scrollY && window.scrollY <= scrollBegin + 10600) {
+            let sectionPos = 320 * (window.scrollY - scrollBegin - 6600)/(4000);
+            document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
+            document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 280) + "vh)";
         }
 
         /* RUN ANIMATION */
@@ -223,11 +231,17 @@ function myUniverseScroll() {
         }
 
         if (scrollBegin + 4900 <= window.scrollY) {
+            document.querySelector("#asilux").style.opacity = 1;
+        } else {
+            document.querySelector("#asilux").style.opacity = 0;
+        }
+
+        if (scrollBegin + 4900 <= window.scrollY && window.scrollY <= scrollBegin + 7000) {
 
             document.querySelectorAll('#asilux .lineLeft').forEach((element) => element.style.animationPlayState = "running");
             document.querySelectorAll('#asilux .lineUp').forEach((element) => element.style.animationPlayState = "running");
 
-            document.querySelector("#asilux").style.opacity = 1;
+
             if (!asiluxVideoStarted) {
                 asiluxVideoStarted = true;
                 document.querySelector('#asilux-blockling-2').pause();
@@ -249,7 +263,7 @@ function myUniverseScroll() {
             }
         } else {
             if (asiluxVideoStarted) {
-                document.querySelector("#asilux").style.opacity = 0;
+
                 document.querySelector('#asilux-blockling-2').pause();
             }
         }
@@ -264,7 +278,7 @@ function myUniverseScroll() {
 
             document.querySelector("#scc .title").style.mixBlendMode = "difference";
 
-        } else if (scrollBegin + 5200 < window.scrollY && window.scrollY <= scrollBegin + 10000) {
+        } else if (scrollBegin + 5200 < window.scrollY && window.scrollY <= scrollBegin + 15000) {
             let background = "#859b50";
             let white = "#fdfdfd";
             changeProjectTheme(background, white);

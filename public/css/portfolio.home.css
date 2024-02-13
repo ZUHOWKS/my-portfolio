@@ -1,3 +1,7 @@
+body {
+    height: 15000px;
+}
+
 #welcome {
 
 }
@@ -241,19 +245,24 @@
 }
 
 #asilux {
+    display: flex;
+    flex-direction: column;
     opacity: 0;
     width: 100vw;
-    transition: all 0.2s;
+    transition: opacity 0.2s;
+    transform: translateX(5em);
 }
 
 #asilux div:nth-child(1) {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
     align-content: center;
-
 }
 
 .asilux-blockling {
     position: absolute;
-    left: -10em;
+    left: -15em;
     top: -5em;
     width: 75vw;
 }
@@ -264,7 +273,7 @@
 
 #asilux-title {
     position: absolute;
-    right: 2.5em;
+    right: 5em;
 }
 
 #asilux-title h1 {
@@ -273,9 +282,16 @@
 }
 
 #asilux-title h1:nth-child(1) {
-    animation-delay: 3s;
+    animation-delay: 2.85s;
 }
 
 #asilux-title h1:nth-child(2) {
-    animation-delay: 3.35s;
+    animation-delay: 3.1s;
+}
+
+#asilux div:nth-child(2) {
+    padding: 0 2em 0 2em;
+    position: relative;
+    align-content: center;
+    font-size: 2.5em;
 }
