@@ -166,6 +166,8 @@ let confirmBlocklingArrived = false
 function changeProjectTheme(background, textColor) {
     projectsSection.style.background = background;
     document.querySelectorAll("#projects h1").forEach((e) => e.style.color = textColor);
+    document.querySelectorAll("#projects h2").forEach((e) => e.style.color = textColor);
+    document.querySelectorAll("#projects h3").forEach((e) => e.style.color = textColor);
     document.querySelectorAll("#projects p").forEach((e) => e.style.color = textColor);
     document.querySelectorAll("#projects a").forEach((e) => e.style.color = textColor);
 }
@@ -180,12 +182,15 @@ function myUniverseScroll() {
         projectsSection.style.visibility = "visible";
 
         /* SCROLL CONTROLLER */
+        // Appear Project section
         if(projectsAnimation && window.scrollY <= scrollBegin + 200) {
 
             projectsSection.style.background = "none";
             document.querySelectorAll("#scc h1").forEach((e) => e.style.color = "black !important");
 
-        } else if (scrollBegin + 200 < window.scrollY && window.scrollY <= scrollBegin + 2000) {
+        }
+        // SCC
+        else if (scrollBegin + 200 < window.scrollY && window.scrollY <= scrollBegin + 2000) {
             let sectionPos = -37 - 76.5 * (window.scrollY - scrollBegin)/(2000);
             document.querySelector("#scc").style.transform = "translateX(" + sectionPos + "vw)";
 
@@ -193,19 +198,25 @@ function myUniverseScroll() {
             document.querySelector("#scc #scc-title").style.transform = "translateX(" + titlePos + "em)";
 
 
-        } else if (scrollBegin + 2000 < window.scrollY && window.scrollY <= scrollBegin + 4200) {
+        }
+        // SCC Paragraph
+        else if (scrollBegin + 2000 < window.scrollY && window.scrollY <= scrollBegin + 4200) {
             let sectionPos = 220 * (window.scrollY - scrollBegin - 2000)/(2200);
             document.querySelector('#scc-video video').play();
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + sectionPos + "vh)";
             document.querySelector("#scc #scc-title").style.transform = "translateX(-12.5em)";
             document.querySelector("#asilux").style.transform = "translateY(-" + (sectionPos + 25) + "vh)";
 
-        } else if (scrollBegin + 4200 < window.scrollY && window.scrollY <= scrollBegin + 5700) {
+        }
+        // Asilux Server
+        else if (scrollBegin + 4200 < window.scrollY && window.scrollY <= scrollBegin + 5700) {
             let sectionPos = 65 * (window.scrollY - scrollBegin - 4200)/(1500);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + (sectionPos * 2 + 220) + "vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 175) + "vh)";
 
-        } else if (scrollBegin + 5700 < window.scrollY && window.scrollY <= scrollBegin + 6600) {
+        }
+        // Enter Asilux paragraph
+        else if (scrollBegin + 5700 < window.scrollY && window.scrollY <= scrollBegin + 6600) {
             let sectionPos = 40 * (window.scrollY - scrollBegin - 5700)/(900);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 240) + "vh)";
@@ -216,6 +227,7 @@ function myUniverseScroll() {
         }
 
         /* RUN ANIMATION */
+        //SCC
         if (scrollBegin <= window.scrollY && window.scrollY <= scrollBegin + 3800) {
             document.querySelector('#scc-video video').play();
         } else {
@@ -230,13 +242,15 @@ function myUniverseScroll() {
             document.querySelectorAll('#scc .lineUp').forEach((element) => element.style.animationPlayState = "running");
         }
 
+        // Asilux
         if (scrollBegin + 4900 <= window.scrollY) {
             document.querySelector("#asilux").style.opacity = 1;
         } else {
             document.querySelector("#asilux").style.opacity = 0;
         }
 
-        if (scrollBegin + 4900 <= window.scrollY && window.scrollY <= scrollBegin + 7000) {
+        // Blockling Video
+        if (scrollBegin + 4900 <= window.scrollY && window.scrollY <= scrollBegin + 6900) {
 
             document.querySelectorAll('#asilux .lineLeft').forEach((element) => element.style.animationPlayState = "running");
             document.querySelectorAll('#asilux .lineUp').forEach((element) => element.style.animationPlayState = "running");
@@ -266,6 +280,13 @@ function myUniverseScroll() {
 
                 document.querySelector('#asilux-blockling-2').pause();
             }
+        }
+
+        // Demana video
+        if (scrollBegin + 6950 <= window.scrollY && window.scrollY <= scrollBegin + 8750) {
+            document.querySelector('#asilux-demana-1').play();
+        } else {
+            document.querySelector('#asilux-demana-1').pause();
         }
 
 
