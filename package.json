@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "deploy": "gh-pages -d dist",
-    "build": "vite build ./src"
+    "build": "tsc && vite build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "dependencies": {
     "gh-pages": "^6.1.1",
     "three": "^0.160.1",
+    "tsc": "^2.0.4",
     "vite": "^5.1.4"
   },
   "devDependencies": {
