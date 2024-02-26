@@ -1,5 +1,5 @@
 body {
-    height: 15000px;
+    height: 13000px;
 }
 
 #welcome {
@@ -373,6 +373,10 @@ body {
     float: right;
 }
 
+footer {
+    top: 13000px;
+    position: absolute;
+    height: 900px;
     width: 100vw;
     z-index: 5;
     background: #2d2d2d;
