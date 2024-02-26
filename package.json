@@ -2,9 +2,11 @@
   "name": "my-portfolio",
   "version": "1.0.0",
   "description": "The ZUHOWKS's portfolio website to store and share all developed code.",
+  "type": "module",
   "scripts": {
     "test": "test",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "build": "vite build ./src"
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,11 @@
   "homepage": "https://github.com/ZUHOWKS/my-portfolio#readme",
   "dependencies": {
     "gh-pages": "^6.1.1",
-    "three": "^0.160.1"
+    "three": "^0.160.1",
+    "vite": "^5.1.4"
   },
   "devDependencies": {
     "@parcel/transformer-glsl": "^2.11.0",
-    "buffer": "^6.0.3",
-    "vite": "^5.0.12"
+    "buffer": "^6.0.3"
   }
 }
