@@ -292,7 +292,7 @@ body {
 
 #asilux>div:nth-child(2) {
     margin-top: 50px;
-    padding: 0 2em 0 4em;
+    padding: 0 2em 0 2em;
     position: relative;
     align-content: center;
     font-size: 2.5em;
@@ -321,11 +321,18 @@ body {
 
 #asilux>div:nth-child(2)>.source-container {
     width: 25vw;
-    float: right;
+    height: 125%;
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    float: left;
 }
 
 #asilux-demana-1 {
-    transform: translateX(-48.5vw) translateY(31vh);
+    height: 1000px;
+    position: absolute;
+    left: 40vw;
 }
 
 

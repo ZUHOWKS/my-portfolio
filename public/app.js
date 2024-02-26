@@ -1,6 +1,5 @@
-import * as THREE from 'https://threejs.org/build/three.module.js';
-
-import {EffectComposer, RenderPass, UnrealBloomPass} from "https://threejs.org/examples/jsm/Addons.js";
+import * as THREE from 'three';
+import {EffectComposer, RenderPass, UnrealBloomPass} from "three/addons/Addons.js";
 
 
 const params = {
@@ -95,12 +94,6 @@ function addHaloCircleMethod(sphere, material, position, rayonCircle, rayon, ang
 }
 
 function initSphere() {
-
-
-    const shaderMaterial = new THREE.ShaderMaterial( {
-        fragmentShader: haloFragment,
-        vertexShader: haloVertex,
-    });
 
     const material = new THREE.MeshBasicMaterial( {
         color: purple
