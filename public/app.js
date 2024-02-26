@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {EffectComposer, RenderPass, UnrealBloomPass} from "three/addons/Addons.js";
+import {EffectComposer, RenderPass, UnrealBloomPass} from "three/examples/jsm/Addons.js";
 
 
 const params = {
