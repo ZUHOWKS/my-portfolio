@@ -1,6 +1,6 @@
-import * as THREE from 'three';
+import * as THREE from 'https://threejs.org/build/three.module.js';
 
-import {EffectComposer, RenderPass, UnrealBloomPass} from "three/examples/jsm/Addons";
+import {EffectComposer, RenderPass, UnrealBloomPass} from "https://threejs.org/examples/jsm/Addons.js";
 
 
 const params = {
