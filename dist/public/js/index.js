@@ -174,7 +174,7 @@ function changeProjectTheme(background, textColor) {
 
 function myUniverseScroll() {
     const scrollBegin = 2325;
-    const scrollEnding = 19000;
+    const scrollEnding = 14000;
     projectsSection.style.opacity = Math.min(1, (window.scrollY-scrollBegin)/200);
     projectsSection.style.transform = "translateX(" + Math.max(-5, -5 + 5*(scrollBegin + 200-window.scrollY)/200) + "em)";
 
@@ -220,7 +220,7 @@ function myUniverseScroll() {
             let sectionPos = 40 * (window.scrollY - scrollBegin - 5700)/(900);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 240) + "vh)";
-        } else if (scrollBegin + 6600 < window.scrollY && window.scrollY <= scrollBegin + 10600) {
+        } else if (scrollBegin + 6600 < window.scrollY && window.scrollY <= scrollEnding) {
             let sectionPos = 320 * (window.scrollY - scrollBegin - 6600)/(4000);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 280) + "vh)";
@@ -299,7 +299,7 @@ function myUniverseScroll() {
 
             document.querySelector("#scc .title").style.mixBlendMode = "difference";
 
-        } else if (scrollBegin + 5200 < window.scrollY && window.scrollY <= scrollBegin + 15000) {
+        } else if (scrollBegin + 5200 < window.scrollY && window.scrollY <= scrollEnding) {
             let background = "#859b50";
             let white = "#fdfdfd";
             changeProjectTheme(background, white);
