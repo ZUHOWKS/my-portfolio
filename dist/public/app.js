@@ -1,8 +1,6 @@
 import * as THREE from 'three';
 
-import haloVertex from './public/shaders/glow/haloVertexShader.glsl'
-import haloFragment from './public/shaders/glow/haloFragmentShader.glsl'
-import {EffectComposer, RenderPass, UnrealBloomPass} from "three/addons";
+import {EffectComposer, RenderPass, UnrealBloomPass} from "three/examples/jsm/Addons";
 
 
 const params = {
