@@ -376,8 +376,22 @@ body {
 footer {
     top: 13000px;
     position: absolute;
-    height: 900px;
+    height: 750px;
     width: 100vw;
     z-index: 5;
     background: #2d2d2d;
+}
+
+footer h3, p, a {
+    color: white;
+}
+
+footer span {
+    margin: 5em;
+}
+
+footer>#credit {
+    font-weight: 200;
+    position: absolute;
+    bottom: 0;
 }
