@@ -95,12 +95,6 @@ function addHaloCircleMethod(sphere, material, position, rayonCircle, rayon, ang
 
 function initSphere() {
 
-
-    const shaderMaterial = new THREE.ShaderMaterial( {
-        fragmentShader: haloFragment,
-        vertexShader: haloVertex,
-    });
-
     const material = new THREE.MeshBasicMaterial( {
         color: purple
     });
