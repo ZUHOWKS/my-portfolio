@@ -258,6 +258,7 @@ body {
     height: 80vh;
     position: relative;
     align-content: center;
+    margin-bottom: 5em;
 }
 
 .asilux-blockling {
@@ -323,6 +324,53 @@ body {
 
 #asilux-demana-1 {
     transform: translateX(-42.5vw) translateY(37.5vh);
+}
+
+
+#asilux>div:nth-child(3) {
+    margin-top: 10px;
+    padding: 0 4em 0 2em;
+    position: relative;
+    align-content: center;
+    font-size: 2.5em;
+    height: 1500px;
+    text-align: right;
+}
+
+#asilux>div:nth-child(3)>div:nth-child(1) {
+    height: 100%;
+    width: 50vw;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#asilux>div:nth-child(3)>div:nth-child(1) img {
+    height: 650px;
+    margin: 2em 0 0 1.5em;
+}
+
+#asilux>div:nth-child(3)>div:nth-child(2)  {
+    width: 50vw;
+    display: block;
+    z-index: 3;
+    float: right;
+}
+
+#asilux>div:nth-child(3)>div:nth-child(2) h3 {
+    width: 100vw;
+    margin: 1.25em 0.1em 1em 0;
+    float: right;
+
+}
+
+#asilux div:nth-child(3) div:nth-child(2) p {
+    width: 47.5vw;
+    font-size: 1.5em;
+    transform: translateY(-5vw);
+    margin: 0.1em 1.25em;
+    float: right;
 }
 
     width: 100vw;
