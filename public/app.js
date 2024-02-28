@@ -12,7 +12,8 @@ const params = {
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight-100), 0.1, 1000);
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.physicallyCorrectLights = true;
 renderer.setSize( window.innerWidth, window.innerHeight);
 document.querySelector("#holo-sphere").appendChild( renderer.domElement );
 
@@ -243,3 +244,18 @@ function cameraTracking(pos, longPos, alphaPos) {
 }
 
 addEventListener('scroll', (e) => holoSphereAnimation());
+
+addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / (window.innerHeight-100);
+
+    // update the camera's frustum
+    camera.updateProjectionMatrix();
+
+    // update the size of the renderer AND the canvas
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // set the pixel ratio (for mobile devices)
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+
+})
