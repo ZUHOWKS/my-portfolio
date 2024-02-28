@@ -209,19 +209,19 @@ function myUniverseScroll() {
 
         }
         // Asilux Server
-        else if (scrollBegin + 4200 < window.scrollY && window.scrollY <= scrollBegin + 5700) {
-            let sectionPos = 65 * (window.scrollY - scrollBegin - 4200)/(1500);
+        else if (scrollBegin + 4100 < window.scrollY && window.scrollY <= scrollBegin + 5600) {
+            let sectionPos = 65 * (window.scrollY - scrollBegin - 4100)/(1500);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-" + (sectionPos * 2 + 220) + "vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 175) + "vh)";
 
         }
         // Enter Asilux paragraph
-        else if (scrollBegin + 5700 < window.scrollY && window.scrollY <= scrollBegin + 6600) {
-            let sectionPos = 40 * (window.scrollY - scrollBegin - 5700)/(900);
+        else if (scrollBegin + 5600 < window.scrollY && window.scrollY <= scrollBegin + 6500) {
+            let sectionPos = 40 * (window.scrollY - scrollBegin - 5600)/(900);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 240) + "vh)";
-        } else if (scrollBegin + 6600 < window.scrollY && window.scrollY <= scrollEnding) {
-            let sectionPos = 320 * (window.scrollY - scrollBegin - 6600)/(4000);
+        } else if (scrollBegin + 6500 < window.scrollY && window.scrollY <= scrollEnding) {
+            let sectionPos = 320 * (window.scrollY - scrollBegin - 6500)/(4000);
             document.querySelector("#scc").style.transform = "translateX(-113.5vw) translateY(-365vh)";
             document.querySelector("#asilux").style.transform = "translateX(5em) translateY(-" + (sectionPos + 280) + "vh)";
         }
@@ -243,14 +243,14 @@ function myUniverseScroll() {
         }
 
         // Asilux
-        if (scrollBegin + 4900 <= window.scrollY) {
+        if (scrollBegin + 4600 <= window.scrollY) {
             document.querySelector("#asilux").style.opacity = 1;
         } else {
             document.querySelector("#asilux").style.opacity = 0;
         }
 
         // Blockling Video
-        if (scrollBegin + 4900 <= window.scrollY && window.scrollY <= scrollBegin + 6900) {
+        if (scrollBegin + 4500 <= window.scrollY && window.scrollY <= scrollBegin + 6600) {
 
             document.querySelectorAll('#asilux .lineLeft').forEach((element) => element.style.animationPlayState = "running");
             document.querySelectorAll('#asilux .lineUp').forEach((element) => element.style.animationPlayState = "running");
@@ -283,7 +283,7 @@ function myUniverseScroll() {
         }
 
         // Demana video
-        if (scrollBegin + 6950 <= window.scrollY && window.scrollY <= scrollBegin + 8750) {
+        if (scrollBegin + 6750 <= window.scrollY && window.scrollY <= scrollBegin + 8550) {
             document.querySelector('#asilux-demana-1').play();
         } else {
             document.querySelector('#asilux-demana-1').pause();
@@ -299,7 +299,7 @@ function myUniverseScroll() {
 
             document.querySelector("#scc .title").style.mixBlendMode = "difference";
 
-        } else if (scrollBegin + 5200 < window.scrollY && window.scrollY <= scrollEnding) {
+        } else if (scrollBegin + 4900 < window.scrollY && window.scrollY <= scrollEnding) {
             let background = "#859b50";
             let white = "#fdfdfd";
             changeProjectTheme(background, white);

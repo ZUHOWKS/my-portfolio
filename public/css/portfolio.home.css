@@ -1,5 +1,5 @@
 body {
-    height: 13000px;
+    height: 12000px;
 }
 
 #welcome {
@@ -146,15 +146,15 @@ body {
 }
 
 #projects h1 {
-    transition: all 0.5s;
+    transition: color 0.5s;
 }
 
 #projects p {
-    transition: all 0.5s;
+    transition: color 0.5s;
 }
 
 #projects a {
-    transition: all 0.5s;
+    transition: color 0.5s;
 }
 
 #projects #projects-container{
@@ -231,15 +231,16 @@ body {
     transform: scale(1.2);
 }
 
-#scc div:nth-child(2) {
+#scc>div:nth-child(2) {
     transform: translateX(68.75vw);
     z-index: -1;
 }
 
-#scc div:nth-child(2) p {
+#scc>div:nth-child(2) p {
     padding: 0.5em 2em 2em 1.5em;
-    width: 90vw;
-    font-size: 4.5em;
+    width: 84vw;
+    height: 120vh;
+    font-size: 3.75em;
     font-weight: 500;
     text-align: justify;
 }
@@ -373,7 +374,7 @@ body {
 
 }
 
-#asilux div:nth-child(3) div:nth-child(2) p {
+#asilux>div:nth-child(3)>div:nth-child(2) p {
     width: 47.5vw;
     font-size: 1.5em;
     transform: translateY(-5vw);
@@ -382,9 +383,9 @@ body {
 }
 
 footer {
-    top: 13100px;
+    top: 12775px;
     position: absolute;
-    height: 750px;
+    height: 80vh;
     width: 100vw;
     z-index: 5;
     background: #2d2d2d;
